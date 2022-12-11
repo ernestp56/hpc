@@ -1,3 +1,15 @@
+# Project overview / explanation
+The structure of the files inside allows you to find different implementations in the /src/ folder. There, we divide it into mpi, openmp and serial implementations.
+
+To run the code you first need to generate data using the graph_creation/random_graph.py. Then you can use graph_cration/graphplot.py to generate plots from the data. You need to run it locally, not on the cluster. Then copy the created graphs to /graph/
+
+To compile the .c files, you can find the command in the respective .sh file. Then, proceed to submit a specific .sh file as a job to the cluster. To do so, run
+
+<code>qsub runDijkstra.sh</code>
+
+The results will be saved in the /output/ folder.
+
+
 # Environment setup
 
 ## Installation guide

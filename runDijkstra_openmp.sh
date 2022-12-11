@@ -13,13 +13,8 @@ module load mpich-3.2
 
 printf "%-12s | %-12s |  %-12s\n"  "Elements" "Threads" "time cost"
 
-for i in $(seq 1 10000); do
-    mpirun.actual ./hpc4ds/src/openmp/djikstra_openmp $i;
+for i in $(seq 1 50); do
+    mpirun.actual ./hpc4ds/src/openmp/dijkstra_openmp $i;
 done
 
-#mpirun.actual ./hpc4ds/djikstra_serial
-
-# When using the math library use -lm to compile
-#mpicc -g -Wall -o djikstra djikstra.c -lm
-
-#mpicc −g −Wall −fopenmp −o djikstra djikstra.c -lm
+#mpicc -g -Wall -fopenmp −o src/openmp/dijkstra_openmp src/openmp/dijkstra_openmp.c -lm

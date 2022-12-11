@@ -25,7 +25,6 @@
 #define MAX_BUF 200
 //#endif
 
-#define threads 5
 
 #define MAX_STRING 10000
 #define INFINITY_NEW 1000000
@@ -114,7 +113,7 @@ int main(int argc, char* argv[]) {
     getcwd(path, MAX_BUF);
     char buf[0x100];
     char file_name[0x100];
-    snprintf(file_name,sizeof(file_name), "/hpc4ds/output/output_v4_%s.csv",file_num);
+    snprintf(file_name,sizeof(file_name), "/hpc4ds/output/output%s.csv",file_num);
     snprintf(buf, sizeof(buf), "%s%s", path, file_name);
 
     if (my_rank == 0){

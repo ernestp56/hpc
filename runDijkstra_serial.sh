@@ -12,9 +12,7 @@ module load mpich-3.2
 #echo $PBS_WALLTIME
 
 printf "%-12s  |  %-12s\n"  "Elements" "time cost"
-mpirun.actual ./hpc4ds/src/serial/djikstra_serial
+mpirun.actual ./hpc4ds/src/serial/dijkstra_serial
 
 # When using the math library use -lm to compile
-#mpicc -g -Wall -o djikstra djikstra.c -lm
-
-#mpicc −g −Wall −fopenmp −o djikstra djikstra.c -lm
+#mpicc -g -Wall -o src/serial/dijkstra_serial src/serial/dijkstra_serial.c -lm

@@ -7,7 +7,7 @@
 
 #define SOURCE 0
 #define INFINITY_NEW 1000000
-#define file_num "10000"
+#define file_num "50"
 #define MAX_BUF 200
 
 int Read_n();
@@ -32,13 +32,13 @@ int main(int argc, char *argv[]) {
     visited = malloc(n*sizeof(int));
     /* Array of predecesors. */
     pred = malloc(n*sizeof(int));
-    
+
     omp_set_num_threads(threads);
 
     double time_start, time_end;
     struct timeval tv;
     struct timezone tz;
-    
+
     Read_matrix(mat, n);
 
     //Matrix
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
     getcwd(path, MAX_BUF);
     char buf[0x100];
     char file_name[0x100];
-    snprintf(file_name,sizeof(file_name), "/hpc4ds/output/output_openmp_%s.csv",file_num);
+    snprintf(file_name,sizeof(file_name), "/hpc4ds/output/output_openmp%s.csv",file_num);
     snprintf(buf, sizeof(buf), "%s%s", path, file_name);
 
     printf("%-12d | %-12d | %-12f\n", n, threads,  time_end - time_start);
@@ -84,9 +84,9 @@ int main(int argc, char *argv[]) {
         fprintf(f,"%d %d %f\n", n, threads, time_end - time_start);
     }
     fclose(f);
-    
-    
-    
+
+
+
     return 0;
 }
 
@@ -148,13 +148,13 @@ void dijkstra(float graph[],int n, int source, float distance[], int pred[], int
     /* OpenMP parallelization starts here */
     #pragma omp parallel private ( my_first, my_id, my_last, my_md, my_mv, my_step ) shared ( visited, md, distance, mv, nth, graph )
         {
-    
+
         my_id = omp_get_thread_num ( );
         nth = omp_get_num_threads ( );
         my_first = (my_id * n ) / nth;
         my_last = ((my_id + 1) * n) / nth - 1;
         //fprintf(stdout, "P%d: First=%d Last=%d\n", my_id, my_first, my_last);
-        
+
         for (my_step = 1; my_step < n; my_step++) {
             #pragma omp single
             {
@@ -164,7 +164,7 @@ void dijkstra(float graph[],int n, int source, float distance[], int pred[], int
             int k;
             my_md = INFINITY_NEW;
             my_mv = -1;
-    
+
             /* Each thread finds the minimum distance unconnected vertex inner of
             the graph */
             for (k = my_first; k <= my_last; k++) {
@@ -216,7 +216,7 @@ void dijkstra(float graph[],int n, int source, float distance[], int pred[], int
 
 
 int Read_n() {
-    int n;  
+    int n;
     n = atoi(file_num);
 
     return n;

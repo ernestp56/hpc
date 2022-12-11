@@ -55,14 +55,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-#Specific files
-graph/graph10000.txt
-output/output10000.csv
-output/output1000.csv
-output/output50.csv
-output/
-output/output1000.csv
-results/
-results_openmp/
-results_serial/

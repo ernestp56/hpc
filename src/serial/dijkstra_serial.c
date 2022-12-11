@@ -16,7 +16,7 @@
 #define MAX_BUF 200
 //#endif
 
-#define file_num "10000"
+#define file_num "50"
 
 struct partialTimes {
     float partial_time1, partial_time2, partial_time3, partial_time4;
@@ -48,7 +48,7 @@ int main (int argc, char *argv[]) {
     visited = malloc(n*sizeof(int));
     /* Array of predecesors. */
     pred = malloc(n*sizeof(int));
-    
+
     /* Open input file, read adjacency matrix */
     char path[MAX_BUF];
     getcwd(path, MAX_BUF);
@@ -65,10 +65,10 @@ int main (int argc, char *argv[]) {
         printf("Error Reading File\n");
         exit (0);
     }
-    for (i = 0; i < n; i++) 
-        for (j = 0; j < n; j++) 
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
             fscanf(myFile, "%f", &mat[i*n + j]);
-    
+
     /*
     printf("The matrix is: \n");
     for (i = 0; i < n; i++)
@@ -87,9 +87,9 @@ int main (int argc, char *argv[]) {
     dijkstra(mat, n, SOURCE, distance, pred, visited);
     gettimeofday(&tv, &tz);
     time_end = (double)tv.tv_sec + (double)tv.tv_usec / 1000000.00;
-    
+
     printf("%-12d  |  %-12f\n", n, time_end - time_start);
-    
+
     //Print_dists(distance,n);
     //Print_paths(pred,n);
 
@@ -109,9 +109,9 @@ int main (int argc, char *argv[]) {
  *              visited: array of visisted nodes
  */
 void dijkstra(float graph[], int n, int source, float distance[], int pred[], int visited[]) {
-    
+
     int i, count, nextNode;
-    float minDistance; 
+    float minDistance;
     /* Initialize all vertices' distance and status. */
     for (i = 0; i < n; i++) {
         distance[i] = graph[source*n + i];
@@ -128,8 +128,8 @@ void dijkstra(float graph[], int n, int source, float distance[], int pred[], in
         for (i = 0; i < n; i++) {
             if (distance[i] < minDistance && !visited[i]) {
                 minDistance = distance[i];
-                nextNode = i; 
-            }           
+                nextNode = i;
+            }
         }
         /* Mark this vertex is true. That means the vertex is processed. */
         visited[nextNode] = 1;
@@ -158,8 +158,8 @@ void Print_dists(float distance[],int n) {
     printf("The distance from 0 to each vertex is:\n");
     printf("  v    dist 0->v\n");
     printf("----   ---------\n");
-                     
-    for (i = 1; i < n; i++) 
+
+    for (i = 1; i < n; i++)
         printf("%3d       %.2f\n", i, distance[i]);
     printf("\n");
 }
@@ -219,7 +219,7 @@ int Read_n() {
     while ((c = fgetc(myFile)) != EOF){
         if (c == ' ' || c == '\n') {
             word = 0;
-        } 
+        }
         else {
             if(!word){
             count++;
