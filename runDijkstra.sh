@@ -13,13 +13,12 @@ module load mpich-3.2
 
 printf "%-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s\n"  "Processors" "Nodes" "loc_n" "time cost" "time1" "time2" "time3" "time4" "time matrix"
 > output_v4_50.csv
-for i in $(seq 1 50); do 
-    mpirun.actual -n $i ./hpc4ds/djikstra;
-done 
+for i in $(seq 1 50); do
+    mpirun.actual -n $i ./hpc4ds/src/mpi/djikstra;
+done
 
 #mpirun.actual ./hpc4ds/djikstra_serial
 
 # When using the math library use -lm to compile
 #mpicc -g -Wall -o djikstra djikstra.c -lm
 
-#mpicc −g −Wall −fopenmp −o djikstra djikstra.c -lm

@@ -62,7 +62,6 @@ output/output10000.csv
 output/output1000.csv
 output/output50.csv
 output/
-graph/
 output/output1000.csv
 results/
 results_openmp/
